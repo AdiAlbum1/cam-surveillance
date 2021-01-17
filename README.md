@@ -1,6 +1,6 @@
-# cam-surveillance
+# Optical Surveillance System
 
-A full Camera based surveillance system based on OpenCV
+A full Home Optical Surveillance System
 
 ## Table of Contents
 
