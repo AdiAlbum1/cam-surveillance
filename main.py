@@ -3,20 +3,25 @@ import cv2
 
 from detector import *
 
-background_subtractor = cv2.createBackgroundSubtractorMOG2(history=500, detectShadows=False)
-motion_detector = MyMotionDetector()
-# cap = cv2.VideoCapture(0)
+# Load Video
 cap = cv2.VideoCapture("example/input.avi")
+# cap = cv2.VideoCapture(0)
+
+# Initialize Motion Detection Module
+motion_detector = MyMotionDetector()
+
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
-    out.write(frame)
 
+    # Apply Motion Detection
     objects, mask = motion_detector(frame)
 
+    # Draw bounding box
     for obj in objects:
         x,y,w,h = obj.roi
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 2)
+
     # Display the resulting frame
     cv2.imshow('frame',frame)
     cv2.imshow('fgMask', mask)
