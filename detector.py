@@ -6,9 +6,9 @@ class MyMotionDetector:
         def __init__(self):
             self.close_size = 7
             self.open_size = 3
-            self.median = 5
+            self.median = 7
             self.history = 500
-            self.detect_shadows = False
+            self.detect_shadows = True
             self.connectivity = 4
 
     def __init__(self, params=Params()):
@@ -19,7 +19,7 @@ class MyMotionDetector:
 
     def __call__(self, frame):
         mask = self._bgs.apply(frame)
-        _, mask = cv2.threshold(mask, 100, 255, cv2.THRESH_BINARY)
+        _, mask = cv2.threshold(mask, 200, 255, cv2.THRESH_BINARY)
         mask = ((cv2.boxFilter(mask,cv2.CV_8U,(self._params.median,self._params.median)) > 255*0.3)*255).astype(np.uint8)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, self._open_kernel)  # remove small objects
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self._close_kernel)  # fill the holes
