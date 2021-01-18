@@ -7,4 +7,4 @@ class Object:
         self.area = 0                               # area in pixels
 
     def is_valid_object(self):
-        return self.area > 400
+        return self.area > 450

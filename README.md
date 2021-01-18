@@ -24,4 +24,10 @@ python main.py
 
 ## Examples
 
-TODO
+Input
+<br/><br/>
+![](gifs/input.gif)
+
+Output
+<br/><br/>
+![](gifs/output.gif)
