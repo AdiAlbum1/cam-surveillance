@@ -1,7 +1,8 @@
 import numpy as np
 import cv2
 
-from detector import *
+from detector.detector import *
+from classifier.classifier import *
 
 # Load Video
 cap = cv2.VideoCapture("example/input.avi")
@@ -9,6 +10,7 @@ cap = cv2.VideoCapture("example/input.avi")
 
 # Initialize Motion Detection Module
 motion_detector = MyMotionDetector()
+classifier = MyObjectClassifier()
 
 while(True):
     # Capture frame-by-frame
@@ -16,6 +18,7 @@ while(True):
 
     # Apply Motion Detection
     objects, mask = motion_detector(frame)
+    classifier(frame, objects)
 
     # Draw bounding box
     for obj in objects:
